@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+	<Nullable>enable</Nullable>
+	  <IncludeBuildOutput>false</IncludeBuildOutput>
+	  <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <NoPackageAnalysis>true</NoPackageAnalysis>
+	  <Description>Dialog generator for .NET applications</Description>
+	  <Authors>Dillion Lowry</Authors>
+	  <PackageTags>source-generator;wpf;dialog</PackageTags>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <PackageVersion>1.0.0</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <ProjectReference Include="..\Rhizine.DialogGenerator\Rhizine.DialogGenerator.csproj"
+						PrivateAssets="all"
+						Pack="true"
+						PackagePath="analyzers/dotnet/cs" />
+	  <ProjectReference Include="..\Rhizine.DialogAttributes\Rhizine.DialogAttributes.csproj"
+						PrivateAssets="all"
+						Pack="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <None Include="$(OutputPath)\Rhizine.DialogAttributes.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <!-- Package the generator in the analyzer directory of the nuget package -->
+	  <None Include="$(OutputPath)\Rhizine.DialogGenerator.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+  </ItemGroup>
+
+</Project>
