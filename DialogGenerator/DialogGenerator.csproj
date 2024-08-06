@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	  <LangVersion>latest</LangVersion>
+	  <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <IncludeBuildOutput>false</IncludeBuildOutput>
+	  <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+	  <DevelopmentDependency>true</DevelopmentDependency>
+	  <Description>Dialog generator Attribute and Source generator for .NET applications</Description>
+	  <Authors>Dillion Lowry</Authors>
+	  <PackageTags>source-generator;wpf;dialog</PackageTags>
+	  <PackageVersion>1.0.0</PackageVersion>
+	  <Title>DialogGenerator</Title>
+	  <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+	  <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	  <RepositoryUrl>https://github.com/DillionLowry/DialogGenerator</RepositoryUrl>
+	  <PackageProjectUrl>https://github.com/DillionLowry/DialogGenerator</PackageProjectUrl>
+	  <PackageId>Rhizine.DialogGenerator</PackageId>  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="nuspec.xml" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DialogAttributes\DialogAttributes.csproj" PrivateAssets="all" />
+	</ItemGroup>
+	<ItemGroup>
+		<!-- Package the generator in the analyzer directory of the nuget package -->
+		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+
+		<!-- Package the attributes -->
+		<None Include="$(OutputPath)\DialogAttributes.dll" Pack="true" PackagePath="lib/netstandard2.0" Visible="false" />
+		<None Include="..\LICENSE.md">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+</Project>
