@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Rhizine.DialogAttributes
+namespace Rhizine.DialogGenerator.DialogAttributes
 {
     public enum DialogType
     {
@@ -17,7 +17,7 @@ namespace Rhizine.DialogAttributes
         Snackbar
     }
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    public class ShowBubbleResultAttribute : Attribute
+    public class ShowDialogResultAttribute : Attribute
     {
         public DialogType Type { get; set; } = DialogType.Bubble;
         public string SuccessMessage { get; set; } = "Success!";
@@ -27,9 +27,9 @@ namespace Rhizine.DialogAttributes
         public string Theme { get; set; } = "Default";
 
 
-        public ShowBubbleResultAttribute() { }
+        public ShowDialogResultAttribute() { }
 
-        public ShowBubbleResultAttribute(string successMessage, string failureMessage)
+        public ShowDialogResultAttribute(string successMessage, string failureMessage)
         {
             SuccessMessage = successMessage;
             FailureMessage = failureMessage;

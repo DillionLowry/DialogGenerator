@@ -4,14 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
 	  <LangVersion>latest</LangVersion>
 	  <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+	  
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <IncludeBuildOutput>false</IncludeBuildOutput>
 	  <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
 	  <DevelopmentDependency>true</DevelopmentDependency>
+
+	  <Version>1.0.1</Version>
 	  <Description>Source generator and Attribute that simplifies the process of creating dialog popups for ICommand results</Description>
 	  <Authors>Dillion Lowry</Authors>
 	  <PackageTags>source-generator;wpf;dialog</PackageTags>
-	  <PackageVersion>1.0.0</PackageVersion>
 	  <Title>DialogGenerator</Title>
 	  <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 	  <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
@@ -31,15 +33,35 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
+
 	<ItemGroup>
 		<ProjectReference Include="..\DialogAttributes\DialogAttributes.csproj" PrivateAssets="all" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<!-- Package the generator in the analyzer directory of the nuget package -->
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 
 		<!-- Package the attributes -->
 		<None Include="$(OutputPath)\DialogAttributes.dll" Pack="true" PackagePath="lib/netstandard2.0" Visible="false" />
+	</ItemGroup>
+
+	<!-- Build DialogAttributes project first -->
+	<PropertyGroup>
+		<GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>
+	</PropertyGroup>
+	<Target Name="GetDependencyTargetPaths">
+		<MSBuild Projects="..\DialogAttributes\DialogAttributes.csproj" Targets="GetTargetPath" Properties="TargetFramework=netstandard2.0">
+			<Output TaskParameter="TargetOutputs" ItemName="DependencyTargetPaths" />
+		</MSBuild>
+	</Target>
+
+	<!-- Copy DialogAttributes.dll to the output directory -->
+	<Target Name="CopyDependencies" AfterTargets="Build">
+		<Copy SourceFiles="@(DependencyTargetPaths)" DestinationFolder="$(OutDir)" />
+	</Target>
+
+	<ItemGroup>
 		<None Include="..\LICENSE.md">
 		  <Pack>True</Pack>
 		  <PackagePath>\</PackagePath>
