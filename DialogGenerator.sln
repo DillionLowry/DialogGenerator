@@ -5,11 +5,12 @@ VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DialogGenerator", "DialogGenerator\DialogGenerator.csproj", "{CA0E340B-7DAE-4318-828A-B218FFD49D9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogAttributes", "DialogAttributes\DialogAttributes.csproj", "{1C923ED5-19EE-4D88-B8E2-8775172E3BD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DialogAttributes", "DialogAttributes\DialogAttributes.csproj", "{1C923ED5-19EE-4D88-B8E2-8775172E3BD9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{68D8F53E-EE8E-475F-A2A3-B91CE2BA5660}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.md = LICENSE.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global

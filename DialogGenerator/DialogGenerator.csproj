@@ -8,7 +8,7 @@
 	  <IncludeBuildOutput>false</IncludeBuildOutput>
 	  <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
 	  <DevelopmentDependency>true</DevelopmentDependency>
-	  <Description>Dialog generator Attribute and Source generator for .NET applications</Description>
+	  <Description>Source generator and Attribute that simplifies the process of creating dialog popups for ICommand results</Description>
 	  <Authors>Dillion Lowry</Authors>
 	  <PackageTags>source-generator;wpf;dialog</PackageTags>
 	  <PackageVersion>1.0.0</PackageVersion>
@@ -17,7 +17,8 @@
 	  <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	  <RepositoryUrl>https://github.com/DillionLowry/DialogGenerator</RepositoryUrl>
 	  <PackageProjectUrl>https://github.com/DillionLowry/DialogGenerator</PackageProjectUrl>
-	  <PackageId>Rhizine.DialogGenerator</PackageId>  </PropertyGroup>
+	  <PackageId>Rhizine.DialogGenerator</PackageId>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>  </PropertyGroup>
 
   <ItemGroup>
     <None Remove="nuspec.xml" />
@@ -40,6 +41,10 @@
 		<!-- Package the attributes -->
 		<None Include="$(OutputPath)\DialogAttributes.dll" Pack="true" PackagePath="lib/netstandard2.0" Visible="false" />
 		<None Include="..\LICENSE.md">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
 		  <Pack>True</Pack>
 		  <PackagePath>\</PackagePath>
 		</None>
