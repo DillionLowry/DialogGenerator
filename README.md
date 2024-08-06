@@ -1,4 +1,4 @@
-# DialogGenerator
+# DialogGenerator [![NuGet Version](https://img.shields.io/nuget/v/Rhizine.DialogGenerator.svg?style=flat)](https://www.nuget.org/packages/Rhizine.DialogGenerator/)
 
 DialogGenerator is a source generator and attribute that simplifies the process of creating dialog popups for ICommand results.
 
